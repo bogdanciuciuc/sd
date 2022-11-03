@@ -1,0 +1,26 @@
+<div fxLayoutAlign="center center" fxFlexFill>
+    <mat-card fxFlex="25">
+        <form [formGroup]="signUp" fxLayoutAlign="stretch" fxLayout="column">
+            <mat-form-field>
+                <input formControlName="name" matInput placeholder="Name">
+            </mat-form-field>
+            <small class="text-danger">*Name is required!</small>
+
+            <mat-form-field>
+                <input formControlName="email" matInput placeholder="Email">
+            </mat-form-field>
+            <small class="text-danger">*Email is required!</small>
+
+            <mat-form-field>
+                <input formControlName="password" matInput type="password" placeholder="Password">
+            </mat-form-field>
+            <small class="text-danger">*Password is required!</small>
+
+            <button (click)="onSubmit()" [disabled]="signUp.invalid" mat-raised-button type="submit">Sign up</button>
+
+            <button mat-raised-button type="submit">Already have an account?
+                <a id="forget" routerLink="/login" >Log in</a>
+            </button>
+        </form>
+    </mat-card>
+</div>

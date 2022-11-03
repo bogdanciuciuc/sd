@@ -1,0 +1,28 @@
+<div class="container my-5">
+    <h1 class="mb-3">Clients</h1>
+
+    <table class="table" *ngIf="clients && clients.length>0">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Role</th>
+                <th> </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let client of clients">
+                <td>{{client.id}}</td>
+                <td>{{client.name}}</td>
+                <td>{{client.email}}</td>
+                <td>{{client.password}}</td>
+                <td>{{client.role}}</td>
+                <td><a [routerLink]="['/clients', 'edit', client.id]">View</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <p *ngIf="!clients || clients.length==0">No clients found</p>
+</div>

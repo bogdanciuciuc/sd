@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  api:
+    build: ./web_api
+    image: image
+    ports:
+       - "7203:80"
+
+  ng:
+    build: ./web_ui
+    image: image
+    ports:
+       - "4200:4200"
+    stdin_open: true
