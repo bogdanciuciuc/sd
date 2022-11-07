@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -8,16 +8,21 @@ import { ClientListComponent } from './components/clients/client-list/client-lis
 import { AddClientComponent } from './components/clients/add-client/add-client.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditClientComponent } from './components/clients/edit-client/edit-client.component';
-import { LoginComponent } from './components/login/login.component';
 import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatFormFieldModule } from '@angular/material/form-field'
-import { MatInputModule } from '@angular/material/input'
-import { MatButtonModule } from '@angular/material/button'
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { SignupComponent } from './signup/signup.component'
-import { CommonModule } from '@angular/common'
+import { CommonModule } from '@angular/common';
+import { AuthenticateComponent } from './components/authenticate/authenticate.component';
+import { AuthInterceptor } from './services/auth.interceptor';
+import { DeviceListComponent } from './components/devices/device-list/device-list.component';
+import { AddDeviceComponent } from './components/devices/add-device/add-device.component';
+import { EditDeviceComponent } from './components/devices/edit-device/edit-device.component';
+import { ClientDevicesComponent } from './components/clients/client-devices/client-devices.component';
+import { LinkComponent } from './components/clients/link/link.component';
 
 @NgModule({
   declarations: [
@@ -25,9 +30,13 @@ import { CommonModule } from '@angular/common'
     ClientListComponent,
     AddClientComponent,
     EditClientComponent,
-    LoginComponent,
     WelcomePageComponent,
-    SignupComponent
+    AuthenticateComponent,
+    DeviceListComponent,
+    AddDeviceComponent,
+    EditDeviceComponent,
+    ClientDevicesComponent,
+    LinkComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +52,11 @@ import { CommonModule } from '@angular/common'
     ReactiveFormsModule,
     CommonModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,19 +1,12 @@
-FROM node:8 as builder
-WORKDIR /app
-COPY package*.json /app/
-RUN npm install
-COPY ./ /app/
-RUN npm run install
+#1
+FROM node:12-alpine AS build 
+WORKDIR /usr/src/sample 
+COPY package.json .
+# no need for this since you put your workdir path
+# RUN cd /usr/src/sample 
+RUN npm install 
+COPY . .
 
-RUN npm run build
-
-FROM nginx:1.17-alpine
-RUN apk --no-cache add curl
-RUN curl -L https://github.com/a8m/envsubst/releases/download/v1.2.0/envsubst-`uname -s`-`uname -m` -o envsubst && \
-    chmod +x envsubst && \
-    mv envsubst /usr/local/bin
-	
-
-COPY --from=builder ./nginx.conf /etc/nginx/nginx.template
-CMD ["/bin/sh", "-c", "envsubst < /etc/nginx/nginx.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
-COPY --from=builder /app/build/ /usr/share/nginx/html
+#2
+FROM nginx:1.17.1-alpine 
+COPY --from=build . /usr/share/nginx/html/

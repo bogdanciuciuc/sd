@@ -28,6 +28,15 @@ namespace web_api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("RefreshToken")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("TokenCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("TokenExpires")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("email")
                         .HasColumnType("nvarchar(max)");
 
@@ -43,6 +52,39 @@ namespace web_api.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Clients");
+                });
+
+            modelBuilder.Entity("web_api.Models.Devices", b =>
+                {
+                    b.Property<Guid>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("max_consumption")
+                        .HasColumnType("float");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Devices");
+                });
+
+            modelBuilder.Entity("web_api.Models.Link", b =>
+                {
+                    b.Property<Guid>("client_id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("device_id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("client_id", "device_id");
+
+                    b.ToTable("Links");
                 });
 #pragma warning restore 612, 618
         }

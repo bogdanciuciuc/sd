@@ -1,0 +1,29 @@
+<div class="container my-5">
+    <h1 class="mb-3">Client Devices</h1>
+
+    <table class="table" *ngIf="devices && devices.length>0">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Description</th>
+                <th>Address</th>
+                <th>Max hourly consumption</th>
+                <th> </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let device of devices">
+                <td>{{device.id}}</td>
+                <td>{{device.description}}</td>
+                <td>{{device.address}}</td>
+                <td>{{device.max_consumption}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a [routerLink]="['/clients/devices', 'link', id]">Add more</a>
+
+    <p *ngIf="!devices || devices.length==0">No devices found for this client 
+        or you don't have access</p>
+</div>

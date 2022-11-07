@@ -59,3 +59,8 @@ C:\Users\bogda\Desktop\an4\sd\angular_aspnet_docker\web_api\web_api\obj\Debug\ne
 C:\Users\bogda\Desktop\an4\sd\angular_aspnet_docker\web_api\web_api\obj\Debug\net6.0\web_api.pdb
 C:\Users\bogda\Desktop\an4\sd\angular_aspnet_docker\web_api\web_api\obj\Debug\net6.0\web_api.genruntimeconfig.cache
 C:\Users\bogda\Desktop\an4\sd\angular_aspnet_docker\web_api\web_api\obj\Debug\net6.0\ref\web_api.dll
+C:\Users\bogda\Desktop\an4\sd\angular_aspnet_docker\web_api\web_api\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\bogda\Desktop\an4\sd\angular_aspnet_docker\web_api\web_api\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\bogda\Desktop\an4\sd\angular_aspnet_docker\web_api\web_api\bin\Debug\net6.0\Scrutor.dll
+C:\Users\bogda\Desktop\an4\sd\angular_aspnet_docker\web_api\web_api\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.dll
+C:\Users\bogda\Desktop\an4\sd\angular_aspnet_docker\web_api\web_api\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll

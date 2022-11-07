@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 using web_api.Data;
 using web_api.Models;
 
@@ -7,6 +9,7 @@ namespace web_api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(Roles = "admin")]
     public class ClientsController : Controller
     {
         private readonly MyDbContext _context;
@@ -84,18 +87,50 @@ namespace web_api.Controllers
             return Ok(client);
         }
 
-        [HttpPut]
-        public async Task<IActionResult> LoginClient([FromRoute] string email,
-            [FromRoute] string password)
+        [HttpGet]
+        [Route("/devices{id:Guid}")]
+        public async Task<IActionResult> LinkedDevices([FromRoute] Guid id)
         {
-            var client = await _context.Clients
-                .Where(c => c.email.Equals(email) && c.password.Equals(password))
-                .FirstOrDefaultAsync();
+            var links = await _context.Links.Where(
+                x => x.client_id.Equals(id)).ToListAsync();
 
-            if (client == null)
-                return NotFound(email);
+            List<Devices> devices = new List<Devices>();
+            foreach (var link in links)
+            {
+                var device = await _context.Devices.FirstOrDefaultAsync(
+                    x => x.id.Equals(link.device_id));
+                devices.Add(device);
+            }
 
-            return Ok(client);
+            return Ok(devices);
+        }
+
+        [HttpPut]
+        [Route("/devices/link{client_id:Guid}")]
+        public async Task<IActionResult> LinkNewDevice([FromRoute] Guid client_id, Devices device)
+        {
+            if (client_id == Guid.Empty)
+                return BadRequest("client id is null");
+            else if (device.id == Guid.Empty)
+                return BadRequest("device id is null");
+            else
+            {
+                Link link = new()
+                {
+                    client_id = client_id,
+                    device_id = device.id
+                };
+                try
+                {
+                    await _context.Links.AddAsync(link);
+                    await _context.SaveChangesAsync();
+                }
+                catch
+                {
+                    return Conflict("Device already linked!");
+                }
+                return Ok(link);
+            }
         }
     }
 }

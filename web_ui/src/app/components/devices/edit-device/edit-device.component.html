@@ -1,0 +1,33 @@
+<div class="container my-5">
+    <h1 class="mb-3">Edit Client</h1>
+    <div class="row">
+        <div class="col-6">
+            <form #form="ngForm" (ngSubmit)="updateDevice()">
+                <div class="mb-3">
+                    <label for="id" class="form-label">Id</label>
+                    <input type="text" class="form-control" id="id" readonly 
+                    name="id" [(ngModel)]="deviceDetails.id">
+                  </div>
+                <div class="mb-3">
+                  <label for="description" class="form-label">Description</label>
+                  <input type="text" class="form-control" id="description"
+                  name="description" [(ngModel)]="deviceDetails.description">
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="address"
+                    name="address" [(ngModel)]="deviceDetails.address">
+                </div>
+
+                <div class="mb-3">
+                    <label for="max_consumption" class="form-label">Maximum hourly consumption</label>
+                    <input type="text" class="form-control" id="max_consumption"
+                    name="max_consumption" [(ngModel)]="deviceDetails.max_consumption">
+                </div>
+                <button type="submit" class="btn btn-primary mr-6">Save</button>
+                <button type="button" class="btn btn-danger" 
+                (click)="deleteDevice(deviceDetails.id)">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
