@@ -8,7 +8,7 @@ import { Client } from '../models/client.model';
 })
 export class AuthenticationService {
 
-  private baseUrl: string = "https://localhost:7203/api/Auth/"
+  private baseUrl: string = "https://web-api-sd.azurewebsites.net/api/Auth/"
   constructor(private http: HttpClient) { }
 
   public signUp(client: Client): Observable<any> {
