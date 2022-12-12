@@ -86,6 +86,25 @@ namespace web_api.Migrations
 
                     b.ToTable("Links");
                 });
+
+            modelBuilder.Entity("web_api.Models.Timestamp", b =>
+                {
+                    b.Property<Guid>("id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("deviceId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<float?>("energy_consumption")
+                        .HasColumnType("real");
+
+                    b.Property<DateTime>("timestamp")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("id", "deviceId");
+
+                    b.ToTable("Timestamps");
+                });
 #pragma warning restore 612, 618
         }
     }

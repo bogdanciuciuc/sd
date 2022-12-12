@@ -10,7 +10,7 @@ import { Device } from '../models/device.model';
 })
 export class ClientsService {
 
-  private baseApi: string = 'https://web-api-sd.azurewebsites.net';
+  private baseApi: string = 'https://localhost:7203';
 
   constructor(private http: HttpClient) { }
 

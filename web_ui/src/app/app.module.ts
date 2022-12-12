@@ -23,6 +23,7 @@ import { AddDeviceComponent } from './components/devices/add-device/add-device.c
 import { EditDeviceComponent } from './components/devices/edit-device/edit-device.component';
 import { ClientDevicesComponent } from './components/clients/client-devices/client-devices.component';
 import { LinkComponent } from './components/clients/link/link.component';
+import { EnergyComponent } from './components/energy/energy.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { LinkComponent } from './components/clients/link/link.component';
     EditDeviceComponent,
     ClientDevicesComponent,
     LinkComponent,
+    EnergyComponent,
   ],
   imports: [
     BrowserModule,

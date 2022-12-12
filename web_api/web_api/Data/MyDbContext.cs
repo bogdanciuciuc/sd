@@ -11,10 +11,13 @@ namespace web_api.Data
         {
             modelBuilder.Entity<Link>()
                 .HasKey(nameof(Link.client_id), nameof(Link.device_id));
+            modelBuilder.Entity<Timestamp>()
+                .HasKey(nameof(Timestamp.id), nameof(Timestamp.deviceId));
         }
 
         public DbSet<Client> Clients { get; set; }
         public DbSet<Devices> Devices { get; set; }
         public DbSet<Link> Links { get; set; }
+        public DbSet<Timestamp> Timestamps { get; set; }
     }
 }

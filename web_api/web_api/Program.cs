@@ -28,7 +28,7 @@ builder.Services.AddSwaggerGen(options =>
 
 builder.Services.AddDbContext<MyDbContext>(options =>
 options.UseSqlServer(builder.Configuration
-.GetConnectionString("ProdConnectionString")));
+.GetConnectionString("WebApiConnectionString")));
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -43,6 +43,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
+/*builder.Services.AddScoped<IRabbitMQConsumer, RabbitMQConsumer>();
+builder.Services.AddScoped<TimestampService>();
+var consumer = builder.Services.BuildServiceProvider().CreateScope().
+    ServiceProvider.GetRequiredService<IRabbitMQConsumer>();
+consumer.ReceiveTimestamp();
+*/
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

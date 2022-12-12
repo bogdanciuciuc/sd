@@ -9,6 +9,7 @@ import { LinkComponent } from './components/clients/link/link.component';
 import { AddDeviceComponent } from './components/devices/add-device/add-device.component';
 import { DeviceListComponent } from './components/devices/device-list/device-list.component';
 import { EditDeviceComponent } from './components/devices/edit-device/edit-device.component';
+import { EnergyComponent } from './components/energy/energy.component';
 import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
 
 const routes: Routes = [
@@ -51,6 +52,10 @@ const routes: Routes = [
   {
     path: 'clients/devices/link/:id',
     component: LinkComponent
+  },
+  {
+    path: 'consume',
+    component: EnergyComponent
   }
 ];
 
