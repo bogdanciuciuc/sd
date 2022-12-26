@@ -10,7 +10,7 @@ import { Device } from '../models/device.model';
 })
 export class ClientsService {
 
-  private baseApi: string = 'https://localhost:7203';
+  private baseApi: string = 'http://localhost:7203';
 
   constructor(private http: HttpClient) { }
 

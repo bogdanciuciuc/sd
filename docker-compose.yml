@@ -3,17 +3,17 @@ version: '3'
 services:
    api:
       build: ./web_api
-      image: image12_rabbit
+      image: backend-a21
       ports:
          - "7203:7203"
-         - "7204:7204"
+         - "5203:5203"
       environment:
-         - ASPNETCORE_HTTP_PORT=https://+:7204
+         - ASPNETCORE_HTTP_PORT=https://+:5203
          - ASPNETCORE_URLS=http://+:7203
 
    ng:
       build: ./web_ui
-      image: image1_rabbit
+      image: frontend-a21
       ports:
          - "80:80"
       stdin_open: true

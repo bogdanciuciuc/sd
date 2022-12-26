@@ -8,7 +8,7 @@ import { Timestamp } from '../models/timestamp.model';
 })
 export class EnergyService {
 
-  private baseApi: string = 'https://localhost:7203/api/timestamps';
+  private baseApi: string = 'http://localhost:7203/api/timestamps';
 
   constructor(private http: HttpClient){}
 
